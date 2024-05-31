@@ -131,11 +131,17 @@ app.delete('/users/:id',verifyToken,verifyAdmin, async(req,res)=>{
   const result =await userCollection.deleteOne(query);
   res.send(result);
 })
-
-   
-// menu collection
+//menu rltd api
 app.get('/menu',async(req,res)=>{
-    const result =await menuCollection.find().toArray();
+  const result =await menuCollection.find().toArray();
+  res.send(result);
+})
+   
+// menu collection 
+// to do: verifyToken,verifyAdmin,
+app.post('/menu',async(req,res)=>{
+  const item=req.body;
+    const result =await menuCollection.insertOne(item);
     res.send(result);
 })
 // reviewa 
